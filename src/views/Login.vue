@@ -10,7 +10,7 @@
       </el-form-item>
       <el-form-item prop="code">
           <el-input type="text" auto-complete="false" v-model="loginForm.code" placeholder="点击图片更换验证码" style="width:250px;margin-right:5px"></el-input>
-            <img :src="captchaUrl">
+            <img :src="captchaUrl" @click="updatecaptcha">
       </el-form-item>
             <el-checkbox v-model="checked" class="loginRemember">记住我</el-checkbox>
             <el-button type="primary" style="width:100%" @click="submitlogin">登录</el-button>
@@ -23,7 +23,7 @@ export default {
     name:"Login",
     data(){
         return{
-            captchaUrl:'',
+            captchaUrl:'/captcha?time='+new Date(),
             loginForm:{
                 username:'',
                 password:'',
@@ -47,13 +47,18 @@ export default {
         submitlogin(){
             this.$refs.loginForm.validate((valid) => {
           if (valid) {
-            alert('submit!');
+            postRequest('/login',this.loginForm).then(resp=>{
+                alert(JSON.stringify(resp));
+            })
           } else {
           this.$message.error('请输入所有字段');
             return false;
           }
         });
         },
+        updatecaptcha(){
+            this.captchaUrl='/captcha?time='+new Date();
+        }
     
     }
 }
@@ -77,5 +82,9 @@ export default {
 .loginRemember{
     text-align: left;
     margin: 0px 0px 15px 0px;
+}
+.el-form-item__content{
+    display:flex;
+    align-items:center;
 }
 </style>  
