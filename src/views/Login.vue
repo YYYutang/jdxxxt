@@ -1,12 +1,18 @@
 <template>
   <div>
-    <el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginContainer">
+    <el-form  element-loading-text="正在登陆..."
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+     ref="loginForm" 
+     :model="loginForm" 
+     :rules="rules"  
+     class="loginContainer">
         <h3 class="loginTitle">系统登陆</h3>
-      <el-form-item prop="username">
-          <el-input type="text" auto-complete="false" v-model="loginForm.username" placeholder="请输入用户名" ></el-input>
+      <el-form-item prop="id">
+          <el-input type="text" auto-complete="false" v-model="loginForm.id" placeholder="请输入用户名" ></el-input>
       </el-form-item>
-      <el-form-item prop="password">
-          <el-input type="password" auto-complete="false" v-model="loginForm.password" placeholder="请输入密码" ></el-input>
+      <el-form-item prop="psw">
+          <el-input type="password" auto-complete="false" v-model="loginForm.psw" placeholder="请输入密码" ></el-input>
       </el-form-item>
       <el-form-item prop="code">
           <el-input type="text" auto-complete="false" v-model="loginForm.code" placeholder="点击图片更换验证码" style="width:250px;margin-right:5px"></el-input>
@@ -19,22 +25,24 @@
 </template>
 
 <script>
+import {postRequest} from '../utils/api'
 export default {
     name:"Login",
     data(){
         return{
             captchaUrl:'/captcha?time='+new Date(),
             loginForm:{
-                username:'',
-                password:'',
+                id:'',
+                psw:'',
                 code:''
             },
+            loading:false,
               checked:true,
               rules:{
-                  username:[
+                  id:[
                       {required:true,message:'请输入用户名',trigger:'blur'}
                       ],
-                  password:[
+                  psw:[
                       {required:true,message:'请输入密码',trigger:'blur'}
                       ],
                   code:[
@@ -45,16 +53,37 @@ export default {
     },
     methods:{
         submitlogin(){
+
             this.$refs.loginForm.validate((valid) => {
           if (valid) {
+              this.loading=true;
             postRequest('/login',this.loginForm).then(resp=>{
-                alert(JSON.stringify(resp));
+               if(resp){
+                   this.loading=false;
+                   const tokenStr =resp.obj.tokenHead+resp.obj.token;
+                   window.sessionStorage.setItem('tokenStr',tokenStr);
+                   this.$router.replace('/home');
+               }
             })
           } else {
           this.$message.error('请输入所有字段');
             return false;
           }
         });
+
+    
+        
+    //     let params=this.loginForm
+    //  let url='http://localhost:8081/login' 
+	//   this.$axios.post(url,params).then(res =>{
+	//     console.log('请求成功')
+	//     console.log(res)
+	//   }).catch(error =>{
+	//     console.log('请求失败')
+	//     console.log(error )
+	//   })
+
+
         },
         updatecaptcha(){
             this.captchaUrl='/captcha?time='+new Date();
