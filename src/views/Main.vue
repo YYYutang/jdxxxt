@@ -4,9 +4,11 @@
       <el-col>
         <el-card :body-style="{ padding: '10px' }" class="card_main">
           <img src="../assets/cover.webp" class="image" />
+          <div class="header_text">
           <p class="title">计算机科学导论</p>
           <p class="teacher">授课老师：战德臣、张丽杰、靳玉萍、聂兰顺</p>
           <el-button type="primary" round @click="study">开始学习</el-button>
+          </div>
         </el-card>
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="课程介绍" name="first">{{ intro }}</el-tab-pane>
@@ -152,16 +154,30 @@ export default {
 <style>
 .main {
   white-space: pre-wrap;
+  min-width: 800px;
+  width: 70%;
+  margin: 0 auto;
 }
+
 .bottom {
   margin-top: 13px;
   line-height: 12px;
 }
 .card_main {
-  margin: auto;
-  width: 90%;
-  align-content: center;
+  width: calc(100% + 100px);;
+  margin-left: -50px;
 }
+
+.el-card__body {
+  display: flex;
+}
+.header_text {
+  margin-left: 50px;
+  
+}
+.header_text > button {
+    margin-top: 15px
+  }
 .title {
   font-family: 微软雅黑;
   font-size: 40px;
@@ -177,7 +193,6 @@ export default {
 .image {
   width: 40%;
   display: block;
-  float: left;
 }
 .image1 {
   width: 40%;
