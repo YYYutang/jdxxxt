@@ -71,19 +71,6 @@ export default {
           }
         });
 
-    
-        
-    //     let params=this.loginForm
-    //  let url='http://localhost:8081/login' 
-	//   this.$axios.post(url,params).then(res =>{
-	//     console.log('请求成功')
-	//     console.log(res)
-	//   }).catch(error =>{
-	//     console.log('请求失败')
-	//     console.log(error )
-	//   })
-
-
         },
         updatecaptcha(){
             this.captchaUrl='/captcha?time='+new Date();

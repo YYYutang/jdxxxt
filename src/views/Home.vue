@@ -2,10 +2,11 @@
   <div>
     <el-container >
   <el-header class="homeHeader">
-      <div class="title">计算机科学导论学习系统</div>
+      <div class="title" @click="returnHome" style="cursor:pointer" >计算机科学导论学习系统</div>
         <div>
          <el-dropdown @command="commandHandler">
       <span class="el-dropdown-link" >
+        <el-avatar :src=user.avatar></el-avatar>
         {{user.name}}<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
@@ -72,8 +73,11 @@ name: 'Home',
         });
       }
       if (command === 'userinfo') {
-        this.$router.push('/userinfo')
+        this.$router.push('/user')
       }
+    },
+    returnHome(){
+      this.$router.push('/home')
     }
   },
 }

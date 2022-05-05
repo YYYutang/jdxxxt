@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Userinfo from '../views/Userinfo'
 import Main from '../views/Main.vue'
 import Lesson from '@/views/Lesson'
+import User from '@/views/user'
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,6 +14,7 @@ const routes = [
     name: 'Login',
     component: Login
   },
+
   {
     path:'/home',
     name:'Home',
@@ -29,13 +31,19 @@ const routes = [
       name:'Userinfo',
       component:Userinfo
     },
+    {
+      path:'/lesson',
+      name:'Lesson',
+      component:Lesson
+    },
+    {
+      path: '/user',
+      name: 'User',
+      component: User
+    },
   ]
   },
-  {
-    path:'/lesson',
-    name:'Lesson',
-    component:Lesson
-  },
+
  
 ]
 

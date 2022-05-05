@@ -2,8 +2,10 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import router from '../router'
 
+
 // 请求拦截器
 axios.interceptors.request.use(config => {
+    config.headers = { 'Content-Type':'application/json' }
     // 如果存在 token，请求携带这个 token( 登录的时候 把 token 存入了 sessionStorage ）
     if (window.sessionStorage.getItem("tokenStr")) {
         // token 的key : Authorization ; value: tokenStr
@@ -82,5 +84,11 @@ export const deleteRequest = (url, params) => {
         method: 'delete',
         url: `${base}${url}`,
         data: params
+    })
+}
+
+export const getVideo = () => {
+    return axios({
+        url: '/getvideo'
     })
 }
