@@ -117,8 +117,12 @@ export default {
 };
 </script>
 <style>
+html {
+  height: 100%;
+}
 body {
   background-color: #ecf0f1;
+  height: 100%;
 }
 .main-div {
   display: flex;

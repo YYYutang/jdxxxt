@@ -6,6 +6,9 @@ import Userinfo from '../views/Userinfo'
 import Main from '../views/Main.vue'
 import Lesson from '@/views/Lesson'
 import User from '@/views/user'
+import Portal from '@/views/adminPage/portal.vue'
+import Student from '@/views/adminPage/student'
+import AdminTest from '@/views/adminPage/adminTest'
 Vue.use(VueRouter)
 
 const routes = [
@@ -43,6 +46,25 @@ const routes = [
     },
   ]
   },
+
+  {
+    path: '/portal',
+    name: 'Portal',
+    component: Portal,
+    redirect: '/student',
+    children: [
+      {
+        path: '/student',
+        name: 'Student',
+        component: Student,
+      },
+      {
+        path: '/adminTest',
+        name: 'AdminTest',
+        component: AdminTest,
+      }
+    ]
+  }
 
  
 ]
