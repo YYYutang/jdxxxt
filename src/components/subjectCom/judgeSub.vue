@@ -30,6 +30,7 @@ export default {
             form: {
              name: '',
              answer: '',
+             type: 'judge'
             },
             selectList: [
                 {

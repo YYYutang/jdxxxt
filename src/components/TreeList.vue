@@ -5,7 +5,7 @@
           <span>{{ item.name }}</span>
         </template>
        
-        <el-menu-item v-for="(content, indey) in item.page" v-bind:key = "content.name" v-bind:index="`${index+1}-${indey+1}`"> {{ content.name }} </el-menu-item>
+        <el-menu-item v-for="(content, indey) in item.page" v-bind:key = "content.name" v-bind:index="`${index+1}-${indey+1}`"> {{ content.name }} <i class=el-icon-check v-if="content.islearned"></i> </el-menu-item>
     
       </el-submenu>
       
@@ -19,8 +19,9 @@ export default {
     name: 'TreeList',
     props:{
         list: Array,
-    }
+    },
     
+
 }
 </script>
 

@@ -6,7 +6,7 @@
           <img src="../assets/cover.webp" class="image" />
           <div class="header_text">
           <p class="title">计算机科学导论</p>
-          <p class="teacher">授课老师：战德臣、张丽杰、靳玉萍、聂兰顺</p>
+          <p class="teacher">授课老师：战老师、张老师、钟老师</p>
           <el-button type="primary" round @click="study">开始学习</el-button>
           </div>
         </el-card>

@@ -62,7 +62,18 @@ export default {
                    this.loading=false;
                    const tokenStr =resp.obj.tokenHead+resp.obj.token;
                    window.sessionStorage.setItem('tokenStr',tokenStr);
-                   this.$router.replace('/home');
+                   console.log(this.loginForm.id)
+                   postRequest('/getrole',this.loginForm.id).then(resp=>{
+    
+                       if(resp[0].nameZh==="管理员"){
+
+                           this.$router.replace('/portal');
+                       }
+                       else{
+                            this.$router.replace('/home');
+                       }
+                   })
+        
                }
             })
           } else {

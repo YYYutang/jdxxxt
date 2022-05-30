@@ -46,6 +46,7 @@ export default {
                 Cinput: '',
                 Dinput: '',
                 answer: '',
+                type: 'select'
             },
             selectList: [
                 {

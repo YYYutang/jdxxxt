@@ -9,11 +9,15 @@ const store = new Vuex.Store({
     admins: [],
     currentAdmin: JSON.parse(window.sessionStorage.getItem('user')), // 当前用户
     currentSession: null,
+    lessonList: [],
   },
   mutations: {
     INIT_ADMIN(state, admin) {
       state.currentAdmin = admin
   },
+    INIT_LESSONLIST(state, list) {
+      state.lessonList = list;
+    }
   },
   actions: {
   },

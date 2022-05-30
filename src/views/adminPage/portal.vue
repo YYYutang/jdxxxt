@@ -4,7 +4,7 @@
    
 
     <div class="navDiv">
-        <p>JDXXXT后台管理</p>
+        <p>计算机导论学习系统后台管理</p>
     <el-menu
       default-active="student"
       class="el-menu-vertical-demo"
@@ -18,7 +18,7 @@
   
 </div>
     <div class="portal-middle">
-        <div class="portal-header">  <p> XXX 欢迎您 </p></div>
+        <div class="portal-header">  <p> {{user.name}} 欢迎您 </p></div>
     <div class="portal-content">
         <router-view/>
     </div>
@@ -31,13 +31,12 @@ export default {
     name: 'Portal',
     data() {
         return {
-
+            user: JSON.parse(window.sessionStorage.getItem('user')),
         }
     },
 
     methods: {
         handleSelect(index) {
-            console.log(index)
             this.$router.push(`/${index}`);
         }
     }
@@ -59,7 +58,7 @@ export default {
 }
 
 .navDiv>p {
-    color: red;
+    color: black;
     font-weight: bold;
     margin-left: 30px;
 }
@@ -70,8 +69,8 @@ export default {
 .portal-header {
     height: 50px;
     display: flex;
-    justify-content: end;
-    color: red;
+    justify-content: flex-end;
+    color: black;
 }
 
 .portal-content {
